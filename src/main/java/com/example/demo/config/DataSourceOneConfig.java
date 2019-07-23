@@ -6,11 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -59,6 +58,7 @@ public class DataSourceOneConfig {
     }
 
     @Bean
+    @Primary
     public LocalContainerEntityManagerFactoryBean firstDataSourceEntityManagerFactory()
     {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -74,17 +74,17 @@ public class DataSourceOneConfig {
         return factory;
     }
 
-//    @Bean
-//    public DataSourceInitializer firstDataSourceInitializer()
-//    {
-//        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
-//        dataSourceInitializer.setDataSource(firstDataSource());
+    @Bean
+    public DataSourceInitializer firstDataSourceInitializer()
+    {
+        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+        dataSourceInitializer.setDataSource(firstDataSource());
 //        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
 //        databasePopulator.addScript(new ClassPathResource("first-entity-data.sql"));
 //        dataSourceInitializer.setDatabasePopulator(databasePopulator);
-//        dataSourceInitializer.setEnabled(env.getProperty("spring.datasource.one.initialize", Boolean.class, false));
-//        return dataSourceInitializer;
-//    }
+        dataSourceInitializer.setEnabled(env.getProperty("spring.datasource.one.initialize", Boolean.class, false));
+        return dataSourceInitializer;
+    }
 
 //    public static final String PACKAGE_ENTITIES_ONE = "com.example.demo.entityone";
 //

@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.entityone.FirstEntity;
 import com.example.demo.entitytwo.SecondEntity;
 import com.example.demo.service.SecondEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class SecondController {
     @Autowired
     private SecondEntityService secondEntityService;
 
-    @GetMapping("/second")
+    @GetMapping("/seconds")
     public ResponseEntity<List<SecondEntity>> getAllSecondEntity(){
         return new ResponseEntity<>(secondEntityService.getAll(), HttpStatus.OK);
     }

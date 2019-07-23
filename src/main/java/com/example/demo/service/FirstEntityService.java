@@ -19,4 +19,10 @@ public class FirstEntityService {
     {
         return firstEntityRepository.findAll();
     }
+
+    @Transactional(transactionManager="firstDataSourceTransactionManager")
+    public Long countAllStoredProd(Long id)
+    {
+        return firstEntityRepository.countFirstEntityById(id);
+    }
 }

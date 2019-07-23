@@ -7,10 +7,8 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -74,17 +72,17 @@ public class DataSourceTwoConfig {
         return factory;
     }
 
-//    @Bean
-//    public DataSourceInitializer secondDataSourceInitializer()
-//    {
-//        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
-//        dataSourceInitializer.setDataSource(secondDataSource());
+    @Bean
+    public DataSourceInitializer secondDataSourceInitializer()
+    {
+        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+        dataSourceInitializer.setDataSource(secondDataSource());
 //        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
 //        databasePopulator.addScript(new ClassPathResource("second-entity-data.sql"));
 //        dataSourceInitializer.setDatabasePopulator(databasePopulator);
-//        dataSourceInitializer.setEnabled(env.getProperty("spring.datasource.two.initialize", Boolean.class, false));
-//        return dataSourceInitializer;
-//    }
+        dataSourceInitializer.setEnabled(env.getProperty("spring.datasource.two.initialize", Boolean.class, false));
+        return dataSourceInitializer;
+    }
 
 //    public static final String PACKAGE_ENTITIES_TWO = "com.example.demo.entitytwo";
 //

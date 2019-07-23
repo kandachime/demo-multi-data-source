@@ -6,6 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "first_entity")
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(
+        name = "findAllStoredProd",
+        procedureName = "find_all_first_entity",
+        resultClasses = { FirstEntity.class }),
+    @NamedStoredProcedureQuery(
+        name = "countAllStoredProd",
+        procedureName = "count_first_entity_by_id")
+})
 public class FirstEntity implements Serializable {
 
     private static final long serialVersionUID = 746237126088051312L;
