@@ -20,7 +20,7 @@ public class SecondController {
     private SecondEntityService secondEntityService;
 
     @GetMapping("/second")
-    public ResponseEntity<List<SecondEntity>> getAllPublisher(){
+    public ResponseEntity<List<SecondEntity>> getAllSecondEntity(){
         return new ResponseEntity<>(secondEntityService.getAll(), HttpStatus.OK);
     }
 }
