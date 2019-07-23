@@ -21,7 +21,7 @@ public class FirstController {
     private FirstEntityService firstEntityService;
 
     @GetMapping("/first")
-    public ResponseEntity<List<FirstEntity>> getAllPublisher(){
+    public ResponseEntity<List<FirstEntity>> getAllFirstEntity(){
         return new ResponseEntity<>(firstEntityService.getAll(), HttpStatus.OK);
     }
 }
